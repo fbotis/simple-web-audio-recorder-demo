@@ -108,6 +108,20 @@
         <script src="https://portfolio.markjivko.com/dist/recorder.js"></script>
         <script>
             jQuery(document).ready(function () {
+            	// Function to get the value of a URL parameter
+    		const getParameterByName = (name, url) => {
+	      		if (!url) url = window.location.href;
+	      		name = name.replace(/[\[\]]/g, "\\$&");
+	      		const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	      		results = regex.exec(url);
+	      		if (!results) return null;
+	      		if (!results[2]) return "";
+	      		return decodeURIComponent(results[2].replace(/\+/g, " "));
+    		};
+
+    			// Example: Get the value of the 'key' parameter from the URL
+    			const keyValue = getParameterByName('key');
+
                 var $ = jQuery;
                 var myRecorder = {
                     objects: {
@@ -150,7 +164,7 @@
             
             						formData.append('audiomsg', blob, 'recordedAudio.mp3');
             
-            						fetch('https://hook.eu2.make.com/qfd5ng4xcyppyx3cfxyqjq6m7zrgnm3b', {
+            						fetch('https://hook.eu2.make.com/'+keyValue, {
               								method: 'POST',
               								body: formData
             							})
