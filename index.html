@@ -168,27 +168,20 @@
               								method: 'POST',
               								body: formData
             							})
-            						.then(response => console.log('Audio sent successfully'))
-            						.catch(error => console.error('Error sending audio:', error));
+            						.then(response => {
+            							console.log('Audio sent successfully')
+            							// Wrap everything in a row
+                                    	var holderObject = $('<div class="row">SENT</div>')
+                                    	// Append to the list
+                                    	listObject.append(holderObject);
+            						})
+            						.catch(error => {
+            							console.error('Error sending audio:', error);
+            							var holderObject = $('<div class="row">ERROR</div>')
+                                    	// Append to the list
+                                    	listObject.append(holderObject);
+            						});
 
-
-
-                                    var url = (window.URL || window.webkitURL).createObjectURL(blob);
-
-
-                                    // Prepare the playback
-                                    var audioObject = $("<audio controls></audio>").attr("src", url);
-
-                                    // Prepare the download link
-                                    var downloadObject = $("<a>&#9660;</a>")
-                                        .attr("href", url)
-                                        .attr("download", new Date().toUTCString() + ".wav");
-
-                                    // Wrap everything in a row
-                                    var holderObject = $('<div class="row"></div>').append(audioObject).append(downloadObject);
-
-                                    // Append to the list
-                                    listObject.append(holderObject);
                                 });
                             }
                         }
