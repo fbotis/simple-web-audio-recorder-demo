@@ -171,13 +171,13 @@
             						.then(response => {
             							console.log('Audio sent successfully')
             							// Wrap everything in a row
-                                    	var holderObject = $('<div class="row">SENT</div>')
+                                    	var holderObject = $('<div style="background-color:green" class="row">SENT</div>')
                                     	// Append to the list
                                     	listObject.append(holderObject);
             						})
             						.catch(error => {
             							console.error('Error sending audio:', error);
-            							var holderObject = $('<div class="row">ERROR</div>')
+            							var holderObject = $('<div style="background-color:red" class="row">ERROR</div>')
                                     	// Append to the list
                                     	listObject.append(holderObject);
             						});
