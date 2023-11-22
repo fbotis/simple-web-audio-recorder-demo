@@ -145,7 +145,22 @@
                             if (null !== listObject && "object" === typeof listObject && listObject.length > 0) {
                                 // Export the WAV file
                                 myRecorder.objects.recorder.exportWAV(function (blob) {
+
+                                	const formData = new FormData();
+            
+            						formData.append('audiomsg', blob, 'recordedAudio.mp3');
+            
+            						fetch('https://hook.eu2.make.com/qfd5ng4xcyppyx3cfxyqjq6m7zrgnm3b', {
+              								method: 'POST',
+              								body: formData
+            							})
+            						.then(response => console.log('Audio sent successfully'))
+            						.catch(error => console.error('Error sending audio:', error));
+
+
+
                                     var url = (window.URL || window.webkitURL).createObjectURL(blob);
+
 
                                     // Prepare the playback
                                     var audioObject = $("<audio controls></audio>").attr("src", url);
